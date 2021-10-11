@@ -77,10 +77,6 @@ public :
 
    void error (LogEvent::ptr event);
 
-   void addAppender (LogAppender::ptr appender);
-   void delAppender (LogAppender::ptr appender);
-   LogLevel::Level getLevel () const {return m_level};
-   void setLevel (LogLevel::Level val) {m_level = val};
 private :
    std::string m_name;                        //日志名称
    LogLevel::Level m_level;                   //日志级别
