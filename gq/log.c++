@@ -1,6 +1,8 @@
 #include "log.h"
 
 namespace gq {
+
+/********      Logger 实现  **********/
 Logger::Logger (const std::string & name = "root") : m_name (name)
 {
     
@@ -66,5 +68,38 @@ void Logger::error (LogEvent::ptr event)
 
 }
 
+/********* StdoutAppender 实现    ************/
+void StdoutLogAppender::log (LogLevel::Level level, LogEvent::ptr event) override
+{
+    if (level >= m_level)
+    {
+	std::cout << m_formatter -> format (level);
+	      
+    }
 
+}
+
+/********* FileAppender 实现    ************/
+FileLogAppender::FileLogAppender (const std::string & filename) : m_filename (filename)
+{
+
+}
+void FileLogAppender::log (LogLevel::Level level, LogEvent::ptr event) override
+{
+    if (level >= m_level)
+    {
+        m_filestream << m_formatter -> format(event);
+    }
+
+}
+bool FileLogAppender::reopen ()
+{
+    if (m_filestream)
+    {
+        m_filestream.close ();
+    }
+    m_filestream.open (m_filename);
+
+    return !!m_filestream;
+}
 }

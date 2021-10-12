@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <list>
+#include <stringstream>
+#include <sstream>
 
 namespace gq 
 {
@@ -51,9 +54,13 @@ public :
 
    virtual ~LogAppender () {};
 
-   void log (LogLevel::Level level, LogEvent::ptr event);
-private :
-   LogLevel::Level m_level;
+   virtual void log (LogLevel::Level level, LogEvent::ptr event) = 0;
+
+   void setFormatter (LogFormatter::ptr val) { m_formatter = val; };
+   LogFormatter::ptr getFormatter() const { return m_formatter; };
+protected :
+   LogLevel::Level m_level;  //因为是虚基类，所以子类可能会用到。
+   LogFormatter::ptr m_formatter;
 };
 
 
@@ -89,11 +96,27 @@ private :
 
 //输出到控制台的Appender
 class StdoutLogAppender : public LogAppender {
+public :
+   typedef std::shared_ptr<StdoutLogAppender> ptr;
+   
+   void log (LogLevel::Level level, LogEvent::ptr event) override;
+private :
 
 };
 
 //输出到文件的Appender
 class FileLogAppender : public LogAppender {
+public :
+   typedef std::shared_ptr<FileLogAppender> ptr;
+   
+   FileLogAppender (const std::string & filename);
+
+   void log (LogLevel::Level level, LogEvent::ptr event) override;
+   //重新打开文件，打开成功，返回true。
+   bool reopen ();
+private :
+   std::string m_filename;
+   std::ofstream m_filestream;
 
 };
 
