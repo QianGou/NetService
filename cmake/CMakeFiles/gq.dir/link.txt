@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC  -rdynamic -O3 -g -std=gnu++0x -Wall -Wno-deprecated -Werror -Wno-unused-function   -shared -Wl,-soname,libgq.so -o ../lib/libgq.so CMakeFiles/gq.dir/gq/log.cc.o 

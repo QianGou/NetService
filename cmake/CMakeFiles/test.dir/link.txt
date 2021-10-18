@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic -O3 -g -std=gnu++0x -Wall -Wno-deprecated -Werror -Wno-unused-function    CMakeFiles/test.dir/tests/test.cc.o  -o ../bin/test -rdynamic ../lib/libgq.so -Wl,-rpath,/home/farsight/netspace/gq/lib 

@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/farsight/netspace/gq/gq/log.cc
+log.h
+/home/farsight/netspace/gq/gq/log.h
+map
+-
+
+/home/farsight/netspace/gq/gq/log.h
+iostream
+-
+string
+-
+memory
+-
+list
+-
+stringstream
+-
+sstream
+-
+tuple
+-
+functional
+-
+

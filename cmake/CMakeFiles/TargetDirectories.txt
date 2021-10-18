@@ -1,0 +1,2 @@
+/home/farsight/netspace/gq/cmake/CMakeFiles/gq.dir
+/home/farsight/netspace/gq/cmake/CMakeFiles/test.dir
